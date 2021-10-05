@@ -1,6 +1,10 @@
 <template>
-<p>Data Loading: {{dataPromise.isPending}}</p>
-<div class="a">
+  <p>Data Loading: {{ dataPromise.isPending }} (should take 2 seconds)</p>
+  <p>
+    this chart has
+    <code>series="[]"</code> before the data is loaded
+  </p>
+  <div class="a">
     <ApexChart
       type="line"
       :options="{
@@ -8,15 +12,19 @@
           height: 100,
         },
         xaxis: {
-              type: 'datetime',
+          type: 'datetime',
         },
         noData: {
-          text: dataPromise.isPending? 'Loading...' : dataPromise.error ? 'Error' : 'No Data'
+          text: dataPromise.isPending ? 'Loading...' : dataPromise.error ? 'Error' : 'No Data'
         },
       }"
       :series="series"
     />
   </div>
+  <p>
+    This chart has
+    <code>series="[ { data: [] } ]"</code>
+  </p>
   <div class="b">
     <ApexChart
       type="line"
@@ -28,9 +36,14 @@
           text: 'No data as expected'
         },
       }"
-      :series="[{data:[]}]"
+      :series="[{ data: [] }]"
     />
   </div>
+  <button
+    onclick="alert('clicked button');"
+  >This button can't be clicked on most of it because it is covered by the chart.</button>
+  <p>If you change some code and hit save, Vite's watcher will referesh the
+    page and the chart will resize to the correct height.</p>
 </template>
 
 <script lang="ts">
