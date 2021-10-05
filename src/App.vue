@@ -53,7 +53,7 @@ import { usePromise } from 'vue-promised'
 
 async function fetchData() {
   await new Promise(function (resolve) {
-    setTimeout(resolve, 2000)
+    setTimeout(resolve, 2000) //change this number to make data loading longer/shorter
   })
   return [{ data: [['2021-01-01', 3], ['2021-03-09', 5], ['2021-09-10', 7]] }]
 }
